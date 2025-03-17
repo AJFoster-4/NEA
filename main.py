@@ -62,6 +62,37 @@ solution=None
 gridData=None
 
 
+def setup(gridDataRaw):
+
+    gridData=[
+        [[None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None]],
+        [[None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None]],
+        [[None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None]],
+        [[None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None]],
+        [[None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None]],
+        [[None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None]],
+        [[None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None]],
+        [[None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None]],
+        [[None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None]]
+    ]
+
+        
+    for r in range(9):
+        for c in range(9):
+            if gridDataRaw[r][c]!=0:
+                gridData[r][c][0]=gridDataRaw[r][c]
+                gridData[r][c][1]=True
+            else:
+                gridData[r][c][0]=gridDataRaw[r][c]
+                gridData[r][c][1]=None
+
+
+    empty=[row[:] for row in gridDataRaw]
+    solution=solve(empty)
+
+    return gridData, solution
+
+
 @app.route("/", methods = ["get","post"])
 def displayGrid():
 
@@ -83,49 +114,31 @@ def displayGrid():
 
             num=random.randint(1,3)
             if num==1:
-                for r in range(9):
-                    for c in range(9):
-                        gridData[r][c][0]=gridE1[r][c]
+                gridData, solution=setup(gridE1)
             elif num==2:
-                for r in range(9):
-                    for c in range(9):
-                        gridData[r][c][0]=gridE2[c][r]
+                gridData, solution=setup(gridE2)
             else:
-                 for r in range(9):
-                    for c in range(9):
-                        gridData[r][c][0]=gridE3[r][c]
+                gridData, solution=setup(gridE3)
 
         elif action=="m":
 
             num=random.randint(1,3)
             if num==1:
-                for r in range(9):
-                    for c in range(9):
-                        gridData[r][c][0]=gridM1[r][c]
+                gridData, solution=setup(gridM1)
             elif num==2:
-                for r in range(9):
-                    for c in range(9):
-                        gridData[r][c][0]=gridM2[r][c]
+                gridData, solution=setup(gridM2)
             else:
-                 for r in range(9):
-                    for c in range(9):
-                        gridData[r][c][0]=gridM3[r][c]
+                gridData, solution=setup(gridM3)
 
         elif action=="h":
 
             num=random.randint(1,3)
             if num==1:
-                for r in range(9):
-                    for c in range(9):
-                        gridData[r][c][0]=gridH1[r][c]
+                gridData, solution=setup(gridH1)
             elif num==2:
-                for r in range(9):
-                    for c in range(9):
-                        gridData[r][c][0]=gridH2[r][c]
+                gridData, solution=setup(gridH2)
             else:
-                 for r in range(9):
-                    for c in range(9):
-                        gridData[r][c][0]=gridH3[r][c]
+                gridData, solution=setup(gridH3)
 
         else:
         
@@ -180,31 +193,8 @@ def displayGrid():
         else:
             gridDataRaw=gridM3
 
-        gridData=[
-            [[None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None]],
-            [[None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None]],
-            [[None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None]],
-            [[None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None]],
-            [[None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None]],
-            [[None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None]],
-            [[None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None]],
-            [[None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None]],
-            [[None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None]]
-        ]
 
-    
-        for r in range(9):
-            for c in range(9):
-                if gridDataRaw[r][c]!=0:
-                    gridData[r][c][0]=gridDataRaw[r][c]
-                    gridData[r][c][1]=True
-                else:
-                    gridData[r][c][0]=gridDataRaw[r][c]
-                    gridData[r][c][1]=None
-
-
-        empty=[row[:] for row in gridDataRaw]
-        solution=solve(empty)
+        gridData, solution=setup(gridDataRaw)
         
 
         
@@ -239,6 +229,7 @@ app.run(debug = True)
 #new error- when a cell is highlighted red, the number inside is replaced with the correct number (very simple fix on line 104, it was a silly mistake)
 
 #cycle 3- loads of shit getting highligthed wrong when new grids are selected
+#this was because I forgot to update solution after having a new grid output
 
 #things to talk about in evaluation:
 
