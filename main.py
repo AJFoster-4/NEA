@@ -80,11 +80,11 @@ def setup(gridDataRaw):
     for r in range(9):
         for c in range(9):
             if gridDataRaw[r][c]!=0:
-                gridData[r][c][0]=gridDataRaw[r][c]
-                gridData[r][c][1]=True
+                gridData[c][r][0]=gridDataRaw[r][c]
+                gridData[c][r][1]=True
             else:
-                gridData[r][c][0]=gridDataRaw[r][c]
-                gridData[r][c][1]=None
+                gridData[c][r][0]=gridDataRaw[r][c]
+                gridData[c][r][1]=None
 
 
     empty=[row[:] for row in gridDataRaw]
@@ -234,3 +234,4 @@ app.run(debug = True)
 #things to talk about in evaluation:
 
 #re-submitting the form after deleting an incorrect number resets that cell back to the incorrect number entered
+#"database" setup is probably dire
