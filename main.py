@@ -106,7 +106,7 @@ def displayGrid():
 
             for r in range(9):
                 for c in range(9):
-                    gridData[r][c][0]=solution[r][c]
+                    gridData[r][c][0]=solution[c][r]
                     gridData[r][c][1]=True
         
 
@@ -170,7 +170,7 @@ def displayGrid():
             #compare this new list with the solution and assign True or False depending on whether cells are correct
             for r in range(9):
                 for c in range(9):
-                    if userGridData[r][c]==solution[r][c] and userGridData[r][c]!=0:
+                    if userGridData[r][c]==solution[c][r] and userGridData[r][c]!=0:
                         gridData[r][c][0]=userGridData[r][c]
                         gridData[r][c][1]=True
                     elif userGridData[r][c]==0:
