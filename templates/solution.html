@@ -15,27 +15,27 @@
                 {% for r in range(gridData|length) %}
                 <div class="grid-row">
                     {% for c in range(gridData|length) %}
-                        {% if gridData[c][r][0] == 0 %}
+                        {% if gridData[r][c][0] == 0 %}
                             <input name="{{ 'r' + r|string + 'c' + c|string }}" 
                                    class="grid-cell {% if r % 3 == 0 %}top-border{% endif %} 
                                                    {% if r % 3 == 2 %}bottom-border{% endif %} 
                                                    {% if c % 3 == 0 %}left-border{% endif %} 
                                                    {% if c % 3 == 2 %}right-border{% endif %}" 
                                    type="number" value="">
-                        {% elif gridData[c][r][1] == True %}
+                        {% elif gridData[r][c][1] == True %}
                             <input name="{{ 'r' + r|string + 'c' + c|string }}" 
                                    class="grid-cell-correct {% if r % 3 == 0 %}top-border{% endif %} 
                                                            {% if r % 3 == 2 %}bottom-border{% endif %} 
                                                            {% if c % 3 == 0 %}left-border{% endif %} 
                                                            {% if c % 3 == 2 %}right-border{% endif %}" 
-                                   type="number" value="{{ gridData[c][r][0] }}" readonly>
+                                   type="number" value="{{ gridData[r][c][0] }}" readonly>
                         {% else %}
                             <input name="{{ 'r' + r|string + 'c' + c|string }}" 
                                    class="grid-cell-wrong {% if r % 3 == 0 %}top-border{% endif %} 
                                                           {% if r % 3 == 2 %}bottom-border{% endif %} 
                                                           {% if c % 3 == 0 %}left-border{% endif %} 
                                                           {% if c % 3 == 2 %}right-border{% endif %}" 
-                                   type="number" value="{{ gridData[c][r][0] }}">
+                                   type="number" value="{{ gridData[r][c][0] }}">
                         {% endif %}
                     {% endfor %}
                 </div>

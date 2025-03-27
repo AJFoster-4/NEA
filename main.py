@@ -80,11 +80,11 @@ def setup(gridDataRaw):
     for r in range(9):
         for c in range(9):
             if gridDataRaw[r][c]!=0:
-                gridData[c][r][0]=gridDataRaw[r][c]
-                gridData[c][r][1]=True
+                gridData[r][c][0]=gridDataRaw[r][c]
+                gridData[r][c][1]=True
             else:
-                gridData[c][r][0]=gridDataRaw[r][c]
-                gridData[c][r][1]=None
+                gridData[r][c][0]=gridDataRaw[r][c]
+                gridData[r][c][1]=None
 
 
     empty=[row[:] for row in gridDataRaw]
@@ -106,7 +106,7 @@ def displayGrid():
 
             for r in range(9):
                 for c in range(9):
-                    gridData[r][c][0]=solution[c][r]
+                    gridData[r][c][0]=solution[r][c]
                     gridData[r][c][1]=True
         
 
@@ -163,14 +163,14 @@ def displayGrid():
                     cellName = f"r{r}c{c}"
                     cellValue = formData.get(cellName, "")
                     if cellValue.isdigit():
-                        userGridData[c][r]=(int(cellValue))
+                        userGridData[r][c]=(int(cellValue))
                     else:
-                        userGridData[c][r]=0
+                        userGridData[r][c]=0
             
             #compare this new list with the solution and assign True or False depending on whether cells are correct
             for r in range(9):
                 for c in range(9):
-                    if userGridData[r][c]==solution[c][r] and userGridData[r][c]!=0:
+                    if userGridData[r][c]==solution[r][c] and userGridData[r][c]!=0:
                         gridData[r][c][0]=userGridData[r][c]
                         gridData[r][c][1]=True
                     elif userGridData[r][c]==0:
