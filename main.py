@@ -219,14 +219,6 @@ app.run(debug = True)
 
 
 
-#error log- highlighting function
-
-#added [0] to the end of the gridData calls on lines 23 and 25 in html so the numbers are actually displayed (previously blank cells)
-#globalised solution and gridData
-#new error- everything highlighted red
-#error was on lines 91 and 93, changed c and r around
-#added lines 99 and 104- this meant that the grid wasn't reset to its original state after the form was submitted
-#new error- when a cell is highlighted red, the number inside is replaced with the correct number (very simple fix on line 104, it was a silly mistake)
 
 #cycle 3- loads of shit getting highligthed wrong when new grids are selected
 #this was because I forgot to update solution after having a new grid output
