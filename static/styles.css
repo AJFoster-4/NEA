@@ -32,14 +32,14 @@ h1{
 }
 
 .grid-cell-correct {
-    background-color: #d4edda; /* Light green for correct cells */
+    background-color: #d4edda; /*light green for correct cells */
 }
 
 .grid-cell-wrong {
-    background-color: #f8d7da; /* Light red for incorrect cells */
+    background-color: #f8d7da; /*light red for incorrect cells */
 }
 
-/* Thicker borders for 3x3 subgrid separation */
+/*thicker borders for 3x3 subgrid separation */
 .top-border {
     border-top: 3px solid black;
 }

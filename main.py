@@ -203,7 +203,7 @@ def displayGrid():
 
         
         
-    return render_template("solution.html", gridData = gridData)
+    return render_template("interface.html", gridData = gridData)
 
 
 
