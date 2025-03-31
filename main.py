@@ -76,7 +76,7 @@ def setup(gridDataRaw):
         [[None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None], [None, None]]
     ]
 
-        
+    #move the raw 2D grid data to the 3D gridData list to hold the values and whether they are correct
     for r in range(9):
         for c in range(9):
             if gridDataRaw[r][c]!=0:
@@ -86,7 +86,8 @@ def setup(gridDataRaw):
                 gridData[r][c][0]=gridDataRaw[r][c]
                 gridData[r][c][1]=None
 
-
+    #create a copy of the gridDataRaw to pass to be solved
+    #this is because the solver modifies gridDataRaw which causes bugs
     empty=[row[:] for row in gridDataRaw]
     solution=solve(empty)
 
@@ -102,6 +103,7 @@ def displayGrid():
 
         action=request.form.get("action")
 
+        #if the user has clicked the solve button, show the solution by replacing all the values in gridData with the corresponding values of the solution
         if action=="showSolution":
 
             for r in range(9):
@@ -109,6 +111,7 @@ def displayGrid():
                     gridData[r][c][0]=solution[r][c]
                     gridData[r][c][1]=True
         
+        #randomly selects a new puzzle
 
         elif action=="e":
 
@@ -142,7 +145,7 @@ def displayGrid():
 
         else:
         
-            #retrieve form data and turn it into a list
+            #retrieves user's grid with any inputs they've made and turns it into a list
 
             formData = request.form
 
@@ -185,6 +188,7 @@ def displayGrid():
         
         gridDataRaw=None
 
+        #randomly select a medium-difficulty puzzle to use
         num=random.randint(1,3)
         if num==1:
             gridDataRaw=gridM1
@@ -205,25 +209,4 @@ def displayGrid():
 
 
 
-app.run(debug = True)  
-
-
-
-#puzzle "database"
-
-
-
-
-
-
-
-
-
-
-#cycle 3- loads of shit getting highligthed wrong when new grids are selected
-#this was because I forgot to update solution after having a new grid output
-
-#things to talk about in evaluation:
-
-#re-submitting the form after deleting an incorrect number resets that cell back to the incorrect number entered
-#"database" setup is probably dire
+app.run(debug = True)

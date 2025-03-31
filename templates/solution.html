@@ -16,7 +16,8 @@
                 <div class="grid-row">
                     {% for c in range(gridData|length) %}
                         {% if gridData[r][c][0] == 0 %}
-                            <input name="{{ 'r' + r|string + 'c' + c|string }}" 
+                            <input name="{{ 'r' + r|string + 'c' + c|string }}"
+                            {# all the if statements are to add borders to the grid cells according to their position- this is to split the grid into 9 squares #}
                                    class="grid-cell {% if r % 3 == 0 %}top-border{% endif %} 
                                                    {% if r % 3 == 2 %}bottom-border{% endif %} 
                                                    {% if c % 3 == 0 %}left-border{% endif %} 
